@@ -1,0 +1,10 @@
+{
+  "domain": "renoweb_legacy",
+  "name": "Renoweb_Legacy",
+  "documentation": "https://github.com/kentora/renoweb-legacy",
+  "issue_tracker": "https://github.com/kentora/renoweb-legacy/issues",
+  "dependencies": [],
+  "config_flow": true,
+  "codeowners": ["@kentora"],
+  "requirements": []
+}

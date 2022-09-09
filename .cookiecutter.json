@@ -1,0 +1,11 @@
+{
+  "_output_dir": "/Users/kenneth/Projects",
+  "_template": "https://github.com/oncleben31/cookiecutter-homeassistant-custom-component.git",
+  "class_name_prefix": "RenowebLegacy",
+  "domain_name": "renoweb_legacy",
+  "friendly_name": "Renoweb_Legacy",
+  "github_user": "kentora",
+  "project_name": "renoweb-legacy",
+  "test_suite": "no",
+  "version": "0.0.0"
+}
