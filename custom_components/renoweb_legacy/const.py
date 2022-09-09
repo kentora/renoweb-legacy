@@ -1,40 +1,50 @@
 """Constants for Renoweb_Legacy."""
 # Base component constants
+from token import TYPE_IGNORE
+
+
 NAME = "Renoweb_Legacy"
 DOMAIN = "renoweb_legacy"
 DOMAIN_DATA = f"{DOMAIN}_data"
 VERSION = "0.0.0"
 
-ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
 ISSUE_URL = "https://github.com/kentora/renoweb-legacy/issues"
 
 # Icons
-ICON = "mdi:format-quote-close"
-
-# Device classes
-BINARY_SENSOR_DEVICE_CLASS = "connectivity"
+ICON_RESIDUAL = "mdi:delete"
+ICON_RECYCLE = "mdi:recycle"
 
 # Platforms
-BINARY_SENSOR = "binary_sensor"
-SENSOR = "sensor"
-SWITCH = "switch"
-PLATFORMS = [BINARY_SENSOR, SENSOR, SWITCH]
+PLATFORMS = ["sensor"]
 
+SENSOR = "sensor"
 
 # Configuration and options
-CONF_ENABLED = "enabled"
-CONF_USERNAME = "username"
-CONF_PASSWORD = "password"
+ATTR_DESCRIPTION = "description"
+ATTR_NEXT_PICKUP_TEXT = "next_pickup"
+ATTR_NEXT_PICKUP_DATE = "next_pickup_date"
+ATTR_SCHEDULE = "schedule"
+ATTR_REFRESH_TIME = "refresh_time"
+ATTR_FORMATTED_STATE_DK = "formatted_state_dk"
+ATTR_SHORT_STATE_DK = "short_state_dk"
+
+CONF_HOST = "host"
+CONF_ADDRESS_ID = "address_id"
+CONF_UPDATE_INTERVAL = "update_interval"
 
 # Defaults
 DEFAULT_NAME = DOMAIN
+
+DEFAULT_ATTRIBUTION = "Data delivered by RenoWeb"
+DEFAULT_BRAND = "RenoWeb"
+DEFAULT_SCAN_INTERVAL = 6
 
 
 STARTUP_MESSAGE = f"""
 -------------------------------------------------------------------
 {NAME}
 Version: {VERSION}
-This is a custom integration!
+This is for renoweb legacy version.
 If you have any issues with this you need to open an issue here:
 {ISSUE_URL}
 -------------------------------------------------------------------

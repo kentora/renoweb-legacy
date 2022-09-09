@@ -17,9 +17,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.update_coordinator import UpdateFailed
 
 from .api import RenowebLegacyApiClient
-from .const import CONF_PASSWORD
-from .const import CONF_USERNAME
-from .const import DOMAIN
+from .const import CONF_ADDRESS_ID, CONF_HOST, DOMAIN
 from .const import PLATFORMS
 from .const import STARTUP_MESSAGE
 
@@ -39,11 +37,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         hass.data.setdefault(DOMAIN, {})
         _LOGGER.info(STARTUP_MESSAGE)
 
-    username = entry.data.get(CONF_USERNAME)
-    password = entry.data.get(CONF_PASSWORD)
+    host = entry.data.get(CONF_HOST)
+    addrid = entry.data.get(CONF_ADDRESS_ID)
 
     session = async_get_clientsession(hass)
-    client = RenowebLegacyApiClient(username, password, session)
+    client = RenowebLegacyApiClient(host, addrid, session)
 
     coordinator = RenowebLegacyDataUpdateCoordinator(hass, client=client)
     await coordinator.async_refresh()

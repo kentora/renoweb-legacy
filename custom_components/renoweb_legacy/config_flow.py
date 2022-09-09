@@ -5,9 +5,7 @@ from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 
 from .api import RenowebLegacyApiClient
-from .const import CONF_PASSWORD
-from .const import CONF_USERNAME
-from .const import DOMAIN
+from .const import CONF_ADDRESS_ID, CONF_HOST, DOMAIN
 from .const import PLATFORMS
 
 
@@ -30,12 +28,12 @@ class RenowebLegacyFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         #     return self.async_abort(reason="single_instance_allowed")
 
         if user_input is not None:
-            valid = await self._test_credentials(
-                user_input[CONF_USERNAME], user_input[CONF_PASSWORD]
+            valid = await self._test_config(
+                user_input[CONF_HOST], user_input[CONF_ADDRESS_ID]
             )
             if valid:
                 return self.async_create_entry(
-                    title=user_input[CONF_USERNAME], data=user_input
+                    title=user_input[CONF_HOST], data=user_input
                 )
             else:
                 self._errors["base"] = "auth"
@@ -54,16 +52,16 @@ class RenowebLegacyFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {vol.Required(CONF_USERNAME): str, vol.Required(CONF_PASSWORD): str}
+                {vol.Required(CONF_HOST): str, vol.Required(CONF_ADDRESS_ID): int}
             ),
             errors=self._errors,
         )
 
-    async def _test_credentials(self, username, password):
+    async def _test_config(self, host, addressid):
         """Return true if credentials is valid."""
         try:
             session = async_create_clientsession(self.hass)
-            client = RenowebLegacyApiClient(username, password, session)
+            client = RenowebLegacyApiClient(host, addressid, session)
             await client.async_get_data()
             return True
         except Exception:  # pylint: disable=broad-except
@@ -102,5 +100,5 @@ class RenowebLegacyOptionsFlowHandler(config_entries.OptionsFlow):
     async def _update_options(self):
         """Update config entry options."""
         return self.async_create_entry(
-            title=self.config_entry.data.get(CONF_USERNAME), data=self.options
+            title=self.config_entry.data.get(CONF_HOST), data=self.options
         )
