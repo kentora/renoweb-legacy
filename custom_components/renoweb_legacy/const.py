@@ -21,12 +21,9 @@ SENSOR = "sensor"
 
 # Configuration and options
 ATTR_DESCRIPTION = "description"
-ATTR_NEXT_PICKUP_TEXT = "next_pickup"
-ATTR_NEXT_PICKUP_DATE = "next_pickup_date"
+ATTR_NEXT_PICKUP = "next_pickup"
 ATTR_SCHEDULE = "schedule"
-ATTR_REFRESH_TIME = "refresh_time"
-ATTR_FORMATTED_STATE_DK = "formatted_state_dk"
-ATTR_SHORT_STATE_DK = "short_state_dk"
+ATTR_MATTYPE = "mattype"
 
 CONF_HOST = "host"
 CONF_ADDRESS_ID = "address_id"
@@ -37,7 +34,7 @@ DEFAULT_NAME = DOMAIN
 
 DEFAULT_ATTRIBUTION = "Data delivered by RenoWeb"
 DEFAULT_BRAND = "RenoWeb"
-DEFAULT_SCAN_INTERVAL = 6
+DEFAULT_UPDATE_INTERVAL = 6
 
 
 STARTUP_MESSAGE = f"""

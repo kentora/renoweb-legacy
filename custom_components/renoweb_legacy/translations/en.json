@@ -5,13 +5,14 @@
         "title": "Renoweb_Legacy",
         "description": "If you need help with the configuration have a look here: https://github.com/kentora/renoweb-legacy",
         "data": {
-          "username": "Username",
-          "password": "Password"
+          "host": "RenoWeb host (https://xxx.renoweb.dk)",
+          "address_id": "address id",
+          "update_interval": "Update interval (in hours)"
         }
       }
     },
     "error": {
-      "auth": "Username/Password is wrong."
+      "auth": "Could not get reply from RenoWeb"
     },
     "abort": {
       "single_instance_allowed": "Only a single instance is allowed."
@@ -21,9 +22,7 @@
     "step": {
       "user": {
         "data": {
-          "binary_sensor": "Binary sensor enabled",
-          "sensor": "Sensor enabled",
-          "switch": "Switch enabled"
+          "sensor": "Sensor enabled"
         }
       }
     }

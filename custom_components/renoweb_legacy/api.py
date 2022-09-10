@@ -3,6 +3,10 @@ import asyncio
 import logging
 import socket
 import json
+import re
+
+from datetime import date, datetime
+
 
 import aiohttp
 import async_timeout
@@ -14,10 +18,10 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 HEADERS = {"Content-type": "application/json; charset=UTF-8"}
 
-"""Simple API Client"""
-
 
 class RenowebLegacyApiClient:
+    """Simple API Client"""
+
     def __init__(self, host: str, addrid: str, session: aiohttp.ClientSession) -> None:
         self._host = host
         self._addrid = addrid
@@ -32,12 +36,31 @@ class RenowebLegacyApiClient:
         jsonres = json.loads(postres["d"])["list"]
         res = {}
         for r in jsonres:
+            r["daysuntilpickup"] = self._get_days_until_pickup(r)
             res[r.get("id")] = r
 
         return res
 
-    async def api_wrapper(
-        self, method: str, url: str, data: dict = {}, headers: dict = {}
+    def _get_days_until_pickup(self, r):
+        org_string = r["toemningsdato"]
+        _LOGGER.debug(org_string)
+        matched = re.match(r"[A-Za-z]+dag den (\d\d-\d\d-\d\d\d\d)", org_string)
+        if matched:
+            _LOGGER.debug("matched")
+            next_pickup = datetime.strptime(matched.group(1), "%d-%m-%Y")
+            _LOGGER.debug(next_pickup)
+            delta = next_pickup.date() - date.today()
+            _LOGGER.debug(delta)
+            return delta.days
+
+        return -1
+
+    async def api_wrapper(  # pylint: disable=dangerous-default-value
+        self,
+        method: str,
+        url: str,
+        data: dict = {},
+        headers: dict = {},
     ) -> dict:
         """Get information from the API."""
         try:

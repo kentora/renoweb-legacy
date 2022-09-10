@@ -17,11 +17,15 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.update_coordinator import UpdateFailed
 
 from .api import RenowebLegacyApiClient
-from .const import CONF_ADDRESS_ID, CONF_HOST, DOMAIN
+from .const import (
+    CONF_ADDRESS_ID,
+    CONF_HOST,
+    CONF_UPDATE_INTERVAL,
+    DEFAULT_UPDATE_INTERVAL,
+    DOMAIN,
+)
 from .const import PLATFORMS
 from .const import STARTUP_MESSAGE
-
-SCAN_INTERVAL = timedelta(seconds=30)
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -39,11 +43,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     host = entry.data.get(CONF_HOST)
     addrid = entry.data.get(CONF_ADDRESS_ID)
+    update = entry.data.get(CONF_UPDATE_INTERVAL)
+
+    update_int = timedelta(hours=DEFAULT_UPDATE_INTERVAL)
+
+    if update:
+        update_int = timedelta(hours=update)
 
     session = async_get_clientsession(hass)
     client = RenowebLegacyApiClient(host, addrid, session)
 
-    coordinator = RenowebLegacyDataUpdateCoordinator(hass, client=client)
+    coordinator = RenowebLegacyDataUpdateCoordinator(
+        hass, client=client, update_interval=update_int
+    )
     await coordinator.async_refresh()
 
     if not coordinator.last_update_success:
@@ -69,12 +81,13 @@ class RenowebLegacyDataUpdateCoordinator(DataUpdateCoordinator):
         self,
         hass: HomeAssistant,
         client: RenowebLegacyApiClient,
+        update_interval: timedelta,
     ) -> None:
         """Initialize."""
         self.api = client
         self.platforms = []
 
-        super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=SCAN_INTERVAL)
+        super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
 
     async def _async_update_data(self):
         """Update data via library."""

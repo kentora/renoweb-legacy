@@ -5,7 +5,13 @@ from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 
 from .api import RenowebLegacyApiClient
-from .const import CONF_ADDRESS_ID, CONF_HOST, DOMAIN
+from .const import (
+    CONF_ADDRESS_ID,
+    CONF_HOST,
+    CONF_UPDATE_INTERVAL,
+    DEFAULT_UPDATE_INTERVAL,
+    DOMAIN,
+)
 from .const import PLATFORMS
 
 
@@ -52,7 +58,13 @@ class RenowebLegacyFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {vol.Required(CONF_HOST): str, vol.Required(CONF_ADDRESS_ID): int}
+                {
+                    vol.Required(CONF_HOST): str,
+                    vol.Required(CONF_ADDRESS_ID): int,
+                    vol.Required(
+                        CONF_UPDATE_INTERVAL, default=DEFAULT_UPDATE_INTERVAL
+                    ): int,
+                }
             ),
             errors=self._errors,
         )

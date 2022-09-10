@@ -1,0 +1,30 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Renoweb_Legacy",
+        "description": "Hvis du skal have hjælp til konfiguration, så kig her: https://github.com/kentora/renoweb-legacy",
+        "data": {
+          "host": "RenoWeb host (https://xxx.renoweb.dk)",
+          "address_id": "Adresse ID",
+          "update_interval": "Opdateringsinterval (i timer)"
+        }
+      }
+    },
+    "error": {
+      "auth": "Kunne ikke få et svar fra RenoWeb"
+    },
+    "abort": {
+      "single_instance_allowed": "Der tillades kun en instans"
+    }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "data": {
+          "sensor": "Sensor aktiveret"
+        }
+      }
+    }
+  }
+}
