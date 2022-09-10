@@ -9,23 +9,21 @@
 
 [![hacs][hacsbadge]][hacs]
 [![Project Maintenance][maintenance-shield]][user_profile]
-[![BuyMeCoffee][buymecoffeebadge]][buymecoffee]
+# [![BuyMeCoffee][buymecoffeebadge]][buymecoffee]
 
-[![Discord][discord-shield]][discord]
-[![Community Forum][forum-shield]][forum]
+# [![Discord][discord-shield]][discord]
+# [![Community Forum][forum-shield]][forum]
 
-**TO BE REMOVED: If you need help, as a developer, to use this custom component tempalte,
-please look at the [User Guide in the Cookiecutter documentation](https://cookiecutter-homeassistant-custom-component.readthedocs.io/en/stable/quickstart.html)**
+**Dette plugin er i stor stil inspireret af [![Briis/RenoWeb][https://github.com/briis/renoweb]].**
+Derudover er det mit første HACS plugin, og noget af det første jeg skriver i Python. Gør mig gerne opmærksom på bad practices og ting der kan gøres smartere.
+
+Henter informationer om næste tømningsdag fra RenoWeb Legacy løsninger, det vil sige løsninger der ikke understøttes af Briis/RenoWeb (Tror jeg).
 
 **This component will set up the following platforms.**
 
 | Platform        | Description                                                               |
 | --------------- | ------------------------------------------------------------------------- |
-| `binary_sensor` | Show something `True` or `False`.                                         |
-| `sensor`        | Show info from Renoweb_Legacy API. |
-| `switch`        | Switch something `True` or `False`.                                       |
-
-![example][exampleimg]
+| `sensor`        | Show info from Renoweb_Legacy API.                                        |
 
 ## Installation
 
@@ -37,27 +35,8 @@ please look at the [User Guide in the Cookiecutter documentation](https://cookie
 6. Restart Home Assistant
 7. In the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Renoweb_Legacy"
 
-Using your HA configuration directory (folder) as a starting point you should now also have this:
-
-```text
-custom_components/renoweb_legacy/translations/en.json
-custom_components/renoweb_legacy/translations/fr.json
-custom_components/renoweb_legacy/translations/nb.json
-custom_components/renoweb_legacy/translations/sensor.en.json
-custom_components/renoweb_legacy/translations/sensor.fr.json
-custom_components/renoweb_legacy/translations/sensor.nb.json
-custom_components/renoweb_legacy/translations/sensor.nb.json
-custom_components/renoweb_legacy/__init__.py
-custom_components/renoweb_legacy/api.py
-custom_components/renoweb_legacy/binary_sensor.py
-custom_components/renoweb_legacy/config_flow.py
-custom_components/renoweb_legacy/const.py
-custom_components/renoweb_legacy/manifest.json
-custom_components/renoweb_legacy/sensor.py
-custom_components/renoweb_legacy/switch.py
-```
-
 ## Configuration is done in the UI
+Indtast først host til RenoWeb, eks. `https://faxe.renoweb.dk`, herefter dit adrid, som findes ved at søge efter din adresse, mens du kigger efter i netværksfanen i dit debug tool. Her skal du bruge "value" værdien fra din adresse.
 
 <!---->
 
