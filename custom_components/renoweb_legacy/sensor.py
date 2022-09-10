@@ -35,17 +35,18 @@ class RenowebLegacySensor(RenowebLegacyEntity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        print(self.coordinator.data)
         return self.coordinator.data.get(self.sensor).get("toemningsdato")
 
     @property
     def icon(self):
         """Return the icon of the sensor."""
         mattype = self.coordinator.data.get(self.sensor)["mattypeid"]
-        if mattype in [500, 502]:
+        if mattype in [500, 502, 491]:
             return ICON_RESIDUAL
         if mattype in [528, 532]:
             return ICON_RECYCLE
+        else:
+            _LOGGER.debug("Unknown mattype %s for sensor %s", mattype, self.name)
 
     @property
     def device_class(self):

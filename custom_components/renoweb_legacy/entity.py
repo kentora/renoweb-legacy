@@ -26,12 +26,3 @@ class RenowebLegacyEntity(CoordinatorEntity):
             "model": VERSION,
             "manufacturer": NAME,
         }
-
-    @property
-    def device_state_attributes(self):
-        """Return the state attributes."""
-        return {
-            "attribution": DEFAULT_ATTRIBUTION,
-            "id": str(self.coordinator.data.get("id")),
-            "integration": DOMAIN,
-        }
