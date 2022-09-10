@@ -14,7 +14,8 @@
 # [![Discord][discord-shield]][discord]
 # [![Community Forum][forum-shield]][forum]
 
-**Dette plugin er i stor stil inspireret af [![Briis/RenoWeb][https://github.com/briis/renoweb]].**
+**Dette plugin er i stor stil inspireret af [Briis/RenoWeb](https://github.com/briis/renoweb).**
+
 Derudover er det mit første HACS plugin, og noget af det første jeg skriver i Python. Gør mig gerne opmærksom på bad practices og ting der kan gøres smartere.
 
 Henter informationer om næste tømningsdag fra RenoWeb Legacy løsninger, det vil sige løsninger der ikke understøttes af Briis/RenoWeb (Tror jeg).
